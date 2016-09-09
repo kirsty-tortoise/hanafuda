@@ -44,11 +44,18 @@ function createNewGame(roomname, users)
   games[roomname] = {roomname = roomname, deck = d, hand1 = h1, hand2 = h2, playArea = p, score1 = {}, score2 = {},  players = users, mode="h1", lastScore = {0, 0}, multipliers = {1, 1}}
 end
 
+function sendAvailableGames(data, msg_or_ip, port_or_nil)
+  local username = string.match(data, "^%%(%w+)$")
+  if users[username] then
+    sendUDP(getEmptyGames(), users[username])
+  end
+end
+
 function processNewUser(data, msg_or_ip, port_or_nil)
   local username = string.match(data, "@(%w+)")
   if username and not users[username] then
     users[username] = {username = username, ip = msg_or_ip, port = port_or_nil}
-    sendUDP("#", users[username])
+    sendUDP(getEmptyGames(), users[username])
   else
     sendUDP("@", {ip = msg_or_ip, port = port_or_nil})
   end
@@ -62,7 +69,7 @@ function processRoomChoice(data, msg_or_ip, port_or_nil)
   if not (newroomname and newusername) then
     -- if the message is just not right, send them back to try again
     if string.match(data, "^#(.*)@(%w+)$") then -- proper username, no room
-      sendUDP("#", {ip = msg_or_ip, port = port_or_nil})
+      sendUDP(getEmptyGames(), {ip = msg_or_ip, port = port_or_nil})
       print("Roomname not correct")
     else
       sendUDP("@", {ip = msg_or_ip, port = port_or_nil})
@@ -82,7 +89,7 @@ function processRoomChoice(data, msg_or_ip, port_or_nil)
       sendStartingGameState(false, game)
     else
       print("Room too full")
-      sendUDP("#", {ip = msg_or_ip, port = port_or_nil})
+      sendUDP(getEmptyGames(), {ip = msg_or_ip, port = port_or_nil})
     end
   else
     -- create a new game
@@ -98,4 +105,20 @@ function handAsChars(cards, number)
     chars = chars .. cards[i].charVal
   end
   return chars
+end
+
+function getEmptyGames()
+  local gameCount = 0
+  local response = ""
+  for name, game in pairs(games) do
+    if #game.players == 1 then
+      response = response .. "#" .. name .. "@" .. game.players[1].username
+    end
+    gameCount = gameCount + 1
+    if gameCount >= 8 then
+      return response
+    end
+  end
+  if response == "" then response = "#" end
+  return response
 end

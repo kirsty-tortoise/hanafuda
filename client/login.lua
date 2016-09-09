@@ -32,6 +32,7 @@ function login.acceptMessage(data, msg)
   if string.sub(data,1,1) == "@" then
     errormsg = "Username already used or no valid username entered"
   elseif string.sub(data, 1, 1) == "#" then
+    lobbySetup(data)
     return chooseRoom
   end
   return login

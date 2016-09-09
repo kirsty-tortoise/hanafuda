@@ -12,7 +12,15 @@ end
 
 function somethingWrong.keypressed(k)
   if k == "return" then
-    return chooseRoom
+    udp:send("%"..username)
   end
   return somethingWrong
+end
+
+function somethingWrong.acceptMessage(data, msg)
+  if data:sub(1,1) == "#" then
+    lobbySetup(data)
+    return chooseRoom
+  end
+  return theyQuit
 end

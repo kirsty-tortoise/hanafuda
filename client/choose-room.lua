@@ -2,12 +2,20 @@ chooseRoom = {}
 roomname = ""
 
 function chooseRoom.draw()
-  love.graphics.setColor(0,0,0)
-  love.graphics.setFont(largefont)
-  love.graphics.printf("Please enter a room name!",100,100,love.graphics.getWidth()-200,"center")
-  love.graphics.printf(roomname,100,300,love.graphics.getWidth()-200,"center")
-  love.graphics.setFont(midfont)
-  love.graphics.printf(errormsg,100,500,love.graphics.getWidth()-200,"center")
+  if #availableRooms == 0 then
+    love.graphics.setColor(0,0,0)
+    love.graphics.setFont(largefont)
+    love.graphics.printf("Please enter a new room name!",100,100,love.graphics.getWidth()-200,"center")
+    love.graphics.printf(roomname,100,300,love.graphics.getWidth()-200,"center")
+    love.graphics.setFont(midfont)
+    love.graphics.printf(errormsg,100,500,love.graphics.getWidth()-200,"center")
+  else
+    love.graphics.setColor(0, 0, 0)
+    for i,j in ipairs(availableRooms) do
+      drawRoomPanel(j, i)
+    end
+    drawRoomPanel({username = username, roomname = roomname}, #availableRooms + 1)
+  end
   return chooseRoom
 end
 
@@ -42,4 +50,12 @@ function chooseRoom.acceptMessage(data, msg)
     return chooseRoom
   end
   return chooseRoom
+end
+
+function drawRoomPanel(room, i)
+  love.graphics.setFont(midfont)
+  love.graphics.print(i, 50, 60 * i - 10)
+  love.graphics.setFont(smallfont)
+  love.graphics.print(room.username, 100, 60 * i)
+  love.graphics.print(room.roomname, 350, 60 * i)
 end

@@ -12,24 +12,30 @@ Other stuff
     - [ ] Check if all local variables are actually local
     - [ ] The client update game functions seem to contain lots of repetition
     - [x] Repeating a lot in update card tweens
- - [ ] Deal with a player quitting without leaving the other player confused
- - [ ] Delete games and matches from the server once they are over
+ - [x] Deal with a player quitting without leaving the other player confused
+ - [x] Delete games and matches from the server once they are over
  - [ ] Allow a user to have an account which they can log into
  - [ ] Store a user's statistics
  - [ ] Allow users to view statistics and keep a log
  - [ ] Add special month rules for 12 game matches
  - [ ] Use a sensible structure for messages instead of symbols as we are running out of symbols
  - [ ] Use only alphabetic characters as card symbols
- - [ ] Either allow non alphabetic characters in username or stop it crashing the server
+ - [x] Either allow non alphabetic characters in username or stop it crashing the server
  - [ ] Prevent against the server being crashed by bad messages generally
  - [ ] Add debug output to the server
  - [x] Add something to check message is received.
  - [x] Add choice of whether it is connecting to proper server or local to client
- - [ ] Add checking if connection has been lost and not sending more messages if that seems to be the case
+ - [x] Add checking if connection has been lost and not sending more messages if that seems to be the case
+ - [ ] Make a nice lobby for choosing a game
+    - [ ] Send messages with available games
+    - [ ] Display on client
+    - [ ] Send selected to the server
+    - [ ] Allow creation of a new game
+    - [ ] Private games need to be accepted by player 1
 
 Allow multiple games as part of a longer matched
  - [ ] Allow match type to be chosen at the beginning by player 1
- - [ ] Move all game initialisation stuff in the client into one function
+ - [x] Move all game initialisation stuff in the client into one function
  - [ ] Add a new gamestate for end of this match
  - [ ] Add match information to the gameover gamestate
  - [ ] Allow both users to choose whether to continue the match

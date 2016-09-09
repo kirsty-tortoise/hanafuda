@@ -12,6 +12,14 @@ end
 
 function theyQuit.keypressed(k)
   if k == "return" then
+    udp:send("%"..username)
+  end
+  return theyQuit
+end
+
+function theyQuit.acceptMessage(data, msg)
+  if data:sub(1,1) == "#" then
+    lobbySetup(data)
     return chooseRoom
   end
   return theyQuit

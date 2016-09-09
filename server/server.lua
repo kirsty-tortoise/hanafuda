@@ -70,6 +70,8 @@ function main()
         updateGame(data, msg_or_ip, port_or_nil)
       elseif string.sub(data,1,1) == "?" then
         koiKoiUpdate(data, msg_or_ip, port_or_nil)
+      elseif string.sub(data,1,1) == "%" then
+        sendAvailableGames(data, msg_or_ip, port_or_nil)
       elseif string.sub(data, 1, 4) == "QUIT" then
         quitGame(data, msg_or_ip, port_or_nil)
       else
