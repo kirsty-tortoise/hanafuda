@@ -23,7 +23,7 @@ function login.keypressed(key)
       username = string.sub(username, 1, byteoffset - 1)
     end
   elseif key == "return" then
-    return chooseRoom
+    udp:send("@"..username)
   end
   return login
 end
@@ -32,7 +32,7 @@ function login.acceptMessage(data, msg)
   if string.sub(data,1,1) == "@" then
     errormsg = "Username already used or no valid username entered"
   elseif string.sub(data, 1, 1) == "#" then
-    return roomChoose
+    return chooseRoom
   end
   return login
 end

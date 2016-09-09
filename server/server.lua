@@ -62,8 +62,10 @@ function main()
       -- ERROR => There was a (probably network) error and the game has to end now
       if string.sub(data, 1, 2) == "OK" then
         removeValidatedMsg(data, msg_or_ip, port_or_nil)
+      elseif string.sub(data,1,1) == "@" then
+        processNewUser(data, msg_or_ip, port_or_nil)
       elseif string.sub(data,1,1) == "#" then
-        createNewGame(data, msg_or_ip, port_or_nil)
+        processRoomChoice(data, msg_or_ip, port_or_nil)
       elseif string.sub(data,1,1) == ">" then
         updateGame(data, msg_or_ip, port_or_nil)
       elseif string.sub(data,1,1) == "?" then
