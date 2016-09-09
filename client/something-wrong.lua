@@ -12,8 +12,7 @@ end
 
 function somethingWrong.keypressed(k)
   if k == "return" then
-    mode = 2
-    return menu
+    return chooseRoom
   end
   return somethingWrong
 end

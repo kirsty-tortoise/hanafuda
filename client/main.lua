@@ -18,9 +18,8 @@ midfont = love.graphics.newFont(fontFile, 50)
 smallfont = love.graphics.newFont(fontFile,30)
 tinyfont = love.graphics.newFont(fontFile, 20)
 
-local gamestate = menu
+local gamestate = login
 errormsg = ""
-mode = 1
 
 local lastMsg = ""
 

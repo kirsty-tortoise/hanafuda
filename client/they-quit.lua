@@ -12,8 +12,7 @@ end
 
 function theyQuit.keypressed(k)
   if k == "return" then
-    mode = 2
-    return menu
+    return chooseRoom
   end
   return theyQuit
 end
