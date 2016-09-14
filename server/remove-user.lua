@@ -2,7 +2,7 @@ function removeUser(username, message)
   if users[username] then
     local roomName = users[username].room
 
-    if roomName then
+    if roomName and games[roomName] then
       local room = games[roomName]
 
       local otherUsername
@@ -15,7 +15,7 @@ function removeUser(username, message)
       if otherUsername then
         local otherUser = users[otherUsername]
         sendUDP(message, otherUser)
-        users[otherUsername].roomname = nil
+        users[otherUsername].room = nil
       end
       -- remove room
       games[roomName] = nil
