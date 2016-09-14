@@ -33,7 +33,7 @@ function isAnyMoving()
   local somethingMoving = false
 
   for _, cardSet in pairs(cardSets) do
-    for _,j in pairs(yourScore) do
+    for _,j in pairs(cardSet) do
       if isCardMoving(j) then
         return true
       end

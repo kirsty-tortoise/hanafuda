@@ -57,6 +57,7 @@ function main()
       -- & => sends to waiting area
       -- ? => Koi-Koi
       -- < => game ending.
+      -- % => requests game room information
       -- OK => message received
       -- STILL HERE => to keep client connected to server
       -- ERROR => There was a (probably network) error and the game has to end now

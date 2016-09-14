@@ -27,7 +27,7 @@ Other stuff
  - [x] Add choice of whether it is connecting to proper server or local to client
  - [x] Add checking if connection has been lost and not sending more messages if that seems to be the case
  - [ ] Make a nice lobby for choosing a game
-    - [ ] Send messages with available games
+    - [x] Send messages with available games
     - [ ] Display on client
     - [ ] Send selected to the server
     - [ ] Allow creation of a new game
